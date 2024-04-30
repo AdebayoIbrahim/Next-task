@@ -13,7 +13,8 @@ const Admin = () => {
     if (!user || user === null) {
       router.push("/signin");
     }
-  }, [user, () => router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   if (!user || user === null) {
     return <h1 className="text-center">Loading...</h1>;
