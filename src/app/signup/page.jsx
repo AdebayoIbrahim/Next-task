@@ -1,11 +1,10 @@
 "use client";
-
+import Signup from "@/firebase/auth/signUp";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const Signuppage = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const router = useRouter();
   const [val, setValues] = useState({});
 
   const handleChange = (e) => {
@@ -15,8 +14,40 @@ const Signuppage = () => {
     setValues((val) => ({ ...val, [name]: value }));
     console.log(val);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (val.email === undefined || val.password === undefined) {
+      alert("fileds cannot be empty");
+      return;
+    }
+    // check-confirm-password
+    if (val.password !== val.cfpassword) {
+      alert("password must match");
+      return;
+    }
+
+    try {
+      const { user, error } = await Signup(val.email, val.password);
+      if (error) {
+        console.log(error);
+        if (error.code === "auth/weak-password") {
+          alert("password length must be 6 or more");
+          return;
+        }
+        alert("login error");
+        return;
+      } else {
+        console.log("Sign-up successful:", user);
+        router.push("/admin");
+      }
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+    }
+  };
+
   return (
-    <div className="container flex justify-center items-center min-h-[90vh]">
+    <div className="container flex justify-center items-center min-h-[100vh]">
       <div className="form_wrapper bg-[white] p-[2rem] w-[350px] shadow-lg rounded-md">
         <h2>Create Account</h2>
         <form onSubmit={handleSubmit} className="pt-3">

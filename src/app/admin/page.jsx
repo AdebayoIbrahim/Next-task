@@ -20,7 +20,7 @@ const Admin = () => {
   return (
     <React.Fragment>
       <div>
-        <h1>welocme User</h1>
+        <h1>welocme User: {user.email}</h1>
       </div>
     </React.Fragment>
   );

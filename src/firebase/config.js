@@ -9,6 +9,7 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
 // iitializing_fire_base_app
 let firebase_app =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
