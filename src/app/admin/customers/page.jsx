@@ -33,7 +33,7 @@ const Customers = () => {
     }
 
     fetchDetails();
-  }, []);
+  }, [router]);
 
   return (
     <Fragment>

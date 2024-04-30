@@ -6,14 +6,18 @@ import { useRouter } from "next/navigation";
 import addData from "@/firebase/firestore/addData";
 
 const Admin = () => {
-  const { user, loading } = useContext(AuthContext);
-
   const router = useRouter();
-  useEffect(() => {
-    if (!user || user === null) {
-      router.push("/signin");
-    }
-  }, [user]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(
+    () => {
+      if (!user || user === null) {
+        router.push("/signin");
+      }
+    },
+    [user],
+    router
+  );
 
   if (!user || user === null) {
     return <h1 className="text-center">Loading...</h1>;
