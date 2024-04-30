@@ -3,7 +3,7 @@ import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/Authcontext";
 import { useRouter } from "next/navigation";
-
+import addData from "@/firebase/firestore/addData";
 const Admin = () => {
   const { user, loading } = useContext(AuthContext);
   const router = useRouter();
@@ -19,8 +19,13 @@ const Admin = () => {
   }
   return (
     <React.Fragment>
-      <div>
-        <h1>welocme User: {user.email}</h1>
+      <div className="wrapper">
+        <nav className="bg-[firebrick] w-full py-4 px-6 flex justify-between items-center">
+          <div>
+            Admin<em>go</em>
+          </div>
+          <div>{user.email || "Admin"}</div>
+        </nav>
       </div>
     </React.Fragment>
   );
