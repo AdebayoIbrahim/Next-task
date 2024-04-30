@@ -17,6 +17,7 @@ const Customers = () => {
     return <h1 className="text-center">Loading...</h1>;
   }
   const collectionName = "Customers";
+
   useEffect(() => {
     async function fetchDetails() {
       try {
@@ -33,7 +34,7 @@ const Customers = () => {
     }
 
     fetchDetails();
-  }, [router]);
+  }, [() => router]);
 
   return (
     <Fragment>

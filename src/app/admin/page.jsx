@@ -13,7 +13,7 @@ const Admin = () => {
     if (!user || user === null) {
       router.push("/signin");
     }
-  }, [user, router]);
+  }, [user, () => router]);
 
   if (!user || user === null) {
     return <h1 className="text-center">Loading...</h1>;
