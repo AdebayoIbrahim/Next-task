@@ -8,6 +8,7 @@ import addData from "@/firebase/firestore/addData";
 const Admin = () => {
   const router = useRouter();
   const { user } = useContext(AuthContext);
+  const [val, setValues] = useState({});
 
   useEffect(() => {
     if (!user || user === null) {
@@ -19,7 +20,6 @@ const Admin = () => {
   if (!user || user === null) {
     return <h1 className="text-center">Loading...</h1>;
   }
-  const [val, setValues] = useState({});
 
   const handleChange = (e) => {
     const name = e.target.name;

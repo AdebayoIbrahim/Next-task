@@ -23,7 +23,7 @@ const Customers = () => {
       try {
         const { results, error } = await getAllDocuments(collectionName);
         if (error) {
-          console.error("Error fetching documents:", error);
+          console.log("Error fetching documents:", error);
         } else {
           console.log("Documents:", results);
           setCustomer(results);
