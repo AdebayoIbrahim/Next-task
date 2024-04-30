@@ -69,7 +69,7 @@ const Signinpage = () => {
           </div>
         </form>
         <div className="pt-4 text-[16px]">
-          Don't have an account ?
+          Don&apos;t have an account ?
           <Link href="/signup" className="text-[#9e2121]">
             Signup
           </Link>

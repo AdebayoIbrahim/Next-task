@@ -11,7 +11,7 @@ const Customers = () => {
     if (!user || user === null) {
       router.push("/signin");
     }
-  }, [user]);
+  }, [user, router]);
 
   if (!user || user === null) {
     return <h1 className="text-center">Loading...</h1>;

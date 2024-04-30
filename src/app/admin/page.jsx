@@ -9,15 +9,11 @@ const Admin = () => {
   const router = useRouter();
   const { user } = useContext(AuthContext);
 
-  useEffect(
-    () => {
-      if (!user || user === null) {
-        router.push("/signin");
-      }
-    },
-    [user],
-    router
-  );
+  useEffect(() => {
+    if (!user || user === null) {
+      router.push("/signin");
+    }
+  }, [user, router]);
 
   if (!user || user === null) {
     return <h1 className="text-center">Loading...</h1>;
