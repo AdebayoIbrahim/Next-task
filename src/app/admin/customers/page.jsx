@@ -5,8 +5,8 @@ import getAllDocuments from "@/firebase/firestore/getData";
 import { useRouter } from "next/navigation";
 const Customers = () => {
   const { user } = useContext(AuthContext);
-  const [customerArr, setCustomer] = useState();
   const router = useRouter();
+  const [customerArr, setCustomer] = useState();
   useEffect(() => {
     if (!user || user === null) {
       router.push("/signin");
@@ -19,24 +19,23 @@ const Customers = () => {
   const collectionName = "Customers";
 
   useEffect(() => {
-    async function fetchDetails() {
-      try {
-        const { results, error } = await getAllDocuments(collectionName);
-        if (error) {
-          console.log("Error fetching documents:", error);
-        } else {
-          console.log("Documents:", results);
-          setCustomer(results);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-
     fetchDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  async function fetchDetails() {
+    try {
+      const { results, error } = await getAllDocuments(collectionName);
+      if (error) {
+        alert("Error fetching documents:", error);
+      } else {
+        console.log("Documents:", results);
+        setCustomer(results);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
   return (
     <Fragment>
       <div className="wrapper_data">
