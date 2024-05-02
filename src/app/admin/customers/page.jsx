@@ -13,30 +13,29 @@ const Customers = () => {
     }
   }, [user, router]);
 
-  if (!user || user === null) {
-    return <h1 className="text-center">Loading...</h1>;
-  }
-
   useEffect(() => {
+    async function fetchDetails() {
+      const collectionName = "Customers";
+      try {
+        const { results, error } = await getAllDocuments(collectionName);
+        if (error) {
+          alert("Error fetching documents:", error);
+        } else {
+          console.log("Documents:", results);
+          setCustomer(results);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
     if (user) {
       fetchDetails();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
-  async function fetchDetails() {
-    const collectionName = "Customers";
-    try {
-      const { results, error } = await getAllDocuments(collectionName);
-      if (error) {
-        alert("Error fetching documents:", error);
-      } else {
-        console.log("Documents:", results);
-        setCustomer(results);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+  if (!user || user === null) {
+    return <h1 className="text-center">Loading...</h1>;
   }
   return (
     <Fragment>
