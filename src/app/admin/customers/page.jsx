@@ -22,7 +22,7 @@ const Customers = () => {
       fetchDetails();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, []);
 
   async function fetchDetails() {
     const collectionName = "Customers";
