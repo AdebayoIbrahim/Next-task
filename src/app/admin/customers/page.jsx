@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const Customers = () => {
   const { user } = useContext(AuthContext);
   const router = useRouter();
-  const [customerArr, setCustomer] = useState();
+  const [customerArr, setCustomer] = useState([]);
   useEffect(() => {
     if (!user || user === null) {
       router.push("/signin");
@@ -16,14 +16,16 @@ const Customers = () => {
   if (!user || user === null) {
     return <h1 className="text-center">Loading...</h1>;
   }
-  const collectionName = "Customers";
 
   useEffect(() => {
-    fetchDetails();
+    if (user) {
+      fetchDetails();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   async function fetchDetails() {
+    const collectionName = "Customers";
     try {
       const { results, error } = await getAllDocuments(collectionName);
       if (error) {
